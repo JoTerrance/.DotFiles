@@ -20,9 +20,16 @@ require('lua-dev-config')
 require('null-ls-config')
 require('trouble-config')
 require('urlview-config')
+require('tabnine-config')
 require('mini-config')
 require('nvim-lint-config')
+require('devcontainer-config')
+
 end
 require('dial-config')
 require('leap-config')
 require('surround-config')
+
+vim.cmd[[colorscheme tokyonight]]
+vim.g.tokyonight_style = 'night'
+

@@ -52,6 +52,18 @@ require('telescope').setup {
     ["show_http_headers"] = false,
     ["show_domain_icons"] = false,
   },
+       docker = {
+      theme = "ivy",
+      binary = "docker", -- in case you want  to use podman or something
+      log_level = vim.log.levels.INFO,
+      init_term = function(command)
+        -- Function used to initialize the terminal with the provided command
+        -- by default a new tab with `'term ' .. command` is used.
+        -- Example for using Floaterm instead:
+        vim.cmd("FloatermNew")
+        vim.cmd("FloatermSend " .. command)
+      end
+    },
     bookmarks = {
       -- Available: 'brave', 'google_chrome', 'safari', 'firefox', 'firefox_dev'
       selected_browser = 'google_chrome',
@@ -116,7 +128,6 @@ require('telescope').load_extension('coc')
 require'telescope'.load_extension('openbrowser')
 require('telescope').load_extension('command_palette')
 require('telescope').load_extension('tmuxinator')
-require('telescope').load_extension('packer')
 require('telescope').load_extension('media_files')
 require'telescope'.load_extension'z'
 require('telescope').load_extension('dap')
@@ -129,3 +140,5 @@ require('telescope').load_extension('env')
 require("telescope").load_extension("notify")
 require("telescope").load_extension("githubcoauthors")
 require("telescope").load_extension("lines")
+require("telescope").load_extension("undo")
+require("telescope").load_extension("docker")
