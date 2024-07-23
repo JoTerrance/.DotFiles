@@ -5,7 +5,6 @@
   shell: source ~/.zshrc && nvm install node
   args:
     executable: /bin/zsh
-    warn: no
   become: false
   ignore_errors: true
    
@@ -13,7 +12,6 @@
   shell: source ~/.zshrc && nvm install-latest-npm
   args:
    executable: /bin/zsh
-   warn: no
   become: false  
   ignore_errors: true
 
@@ -23,30 +21,6 @@
 - name: Install "pyright" package globally.
   npm:
     name: pyright
-    global: yes
-  become: true
-
-- name: Install "intelephense" package globally.
-  npm:
-    name:  intelephense
-    global: yes
-  become: true
-
-- name: Install "dockerfile-language-server-nodejs" package globally.
-  npm:
-    name: dockerfile-language-server-nodejs
-    global: yes
-  become: true
-
-- name: Install "vim-language-server" package globally.
-  npm:
-    name: vim-language-server
-    global: yes
-  become: true
-
-- name: Install "vscode-langservers-extracted" package globally.
-  npm:
-    name:  vscode-langservers-extracted
     global: yes
   become: true
 
@@ -62,27 +36,3 @@
     global: yes
   become: true
     
-- name: Install "bash-language-server" package globally.
-  npm:
-    name: bash-language-server
-    global: yes
-  become: true
-
-- name: Install "vscode-css-languageserver-bin" package globally.
-  npm:
-    name: vscode-css-languageserver-bin
-    global: yes
-  become: true
-
-- name: Install "vscode-html-languageserver-bin" package globally.
-  npm:
-    name: vscode-html-languageserver-bin
-    global: yes
-  become: true
-
-- name: Install "javascript-typescript-langserver" package globally.
-  npm:
-    name: javascript-typescript-langserver
-    global: yes
-  become: true
-

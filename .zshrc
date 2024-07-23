@@ -50,7 +50,8 @@ ZSH_THEME=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-vi-mode git gh aws microk8s npm nvm pip tmuxinator ubuntu jenv  fzf mvn fasd zsh-completions zsh-syntax-highlighting vagrant docker docker-compose vagrant-prompt kubectl git-flow gitfast command-not-found copypath copybuffer copyfile git-prompt dotenv colorize colored-man-pages zsh-history-substring-search extract sudo gitignore terraform dotenv )
+zstyle ':omz:plugins:nvm' lazy yes
+plugins=(git aws microk8s npm nvm pip tmuxinator jenv fzf mvn fasd zsh-completions zsh-syntax-highlighting docker docker-compose kubectl command-not-found copypath copybuffer copyfile git-prompt dotenv colorize colored-man-pages zsh-history-substring-search extract sudo gitignore )
 if [[ -z "${BLIND}" ]]; then
   plugins+=(zsh-autosuggestions)
 fi
@@ -137,23 +138,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 # BEGIN ANSIBLE MANAGED BLOCK for jenv
 export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+#eval "$(jenv init -)"
 # END ANSIBLE MANAGED BLOCK for jenv
 
-# Defer initialization of nvm until nvm, node or a node-dependent command is
-# run. Ensure this block is only run once if .bashrc gets sourced multiple times
-# by checking whether __init_nvm is a function.
-if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(whence -w __init_nvm)" = function ]; then
-  [ -s "$NVM_DIR/zsh_completion" ] && . "$NVM_DIR/zsh_completion"
-  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
-  function __init_nvm() {
-    for i in "${__node_commands[@]}"; do unalias $i; done
-    . "$NVM_DIR"/nvm.sh
-    unset __node_commands
-    unset -f __init_nvm
-  }
-  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
-fi
 
 if [ $commands[gh] ]; then
   source <(gh completion --shell zsh)
@@ -161,7 +148,7 @@ fi
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64/"
 export PATH=$CMAKE_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$SALESFORCE_HOME/bin:$ECLIPSE_HOME/:$HOME/TOOLS/grv/:$PATH
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:~/.local/bin:/snap/bin:$BREW_HOME/bin
-export PATH="$HOME/.jenv/bin:$HOME/go/bin:$PATH"
+export PATH="/opt/nvim-linux64/bin:$HOME/go/bin:$PATH"
 eval $(thefuck --alias)
 
 # Generated for envman. Do not edit.
@@ -169,7 +156,9 @@ eval $(thefuck --alias)
 
 eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS='--preview "batcat --style=numbers --color=always --line-range :200 {}"'
+export FZF_DEFAULT_OPTS='--preview "batcat --style=numbers --color=always --line-range :200 {}" --bind "ctrl-y:execute(readlink -f {} | echo -n {1..} | xclip -selection clipboard)" '
+source ~/.DotFiles/fsb.sh
+source ~/.DotFiles/fshow.sh
 _fzf_comprun() {
   local command=$1
   shift
@@ -180,7 +169,7 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
-nvm use 19
+nvm use 20
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
   eval "$(github-copilot-cli alias -- "$0")"
