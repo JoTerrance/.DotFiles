@@ -30,4 +30,5 @@
     - mssql-cli
     - litecli
     - iredis
+    - distutils
   ignore_errors: true
