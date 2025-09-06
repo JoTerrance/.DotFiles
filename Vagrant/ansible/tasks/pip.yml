@@ -1,102 +1,33 @@
-- name: Install pip3
-  shell: curl https://bootstrap.pypa.io/get-pip.py -o $HOME/get-pip.py && python3 $HOME/get-pip.py
-  args:
-    executable: /bin/zsh
+- name: Ensure pipx and dependencies are installed
   become: true
-  ignore_errors: true
+  ansible.builtin.apt:
+    name:
+      - pipx
+      - python3-venv
+    state: present
+    update_cache: true
 
-- name: Install "psycopg2-binary" package globally.
-  pip:
-    name: psycopg2-binary
-  become: true
-
-- name: Install "flake8" package globally.
-  pip:
-    name: flake8
-  become: true
-
-- name: Install "yapf" package globally.
-  pip:
-    name: yapf
-  become: true
-  
-- name: Install "thefuck" package globally.
-  pip:
-    name: thefuck
-  become: true
-
-- name: Install "autoflake" package globally.
-  pip:
-    name: autoflake
-  become: true
-
-- name: Install "isort" package globally.
-  pip:
-    name: isort
-  become: true
-
-- name: Install "coverage" package globally.
-  pip:
-    name: coverage
-  become: true
-
-- name: Install "python-language-server" package globally.
-  pip:
-    name: python-language-server
-  become: true
-
-
-- name: Install "pylint" package globally.
-  pip:
-    name: pylint
-  become: true
-
-- name: Install "pynvim" package globally.
-  pip:
-    name: pynvim
-  become: true
-
-- name: Install "pygments" package globally.
-  pip:
-    name: pygments
-  become: true
-
-- name: Install "trollius" package globally.
-  pip:
-    name: trollius
-  become: true
-
-- name: Install "greenlet" package globally.
-  pip:
-    name: greenlet 
-  become: true
-
-- name: Install "mycli" package globally.
-  pip:
-    name: mycli 
-  become: true
-  
-- name: Install "pgcli" package globally.
-  pip:
-    name: pgcli 
-    extra_args: --only-binary psycopg2
-  become: true
-  ignore_errors: true
-
-- name: Install "mssql-cli" package globally.
-  pip:
-    name:  mssql-cli
-  become: true
-  ignore_errors: true
-
-- name: Install "sqllite-cli" package globally.
-  pip:
-    name:  litecli
-  become: true
-  ignore_errors: true
-
-- name: Install "iredis-cli" package globally.
-  pip:
-    name: iredis
-  become: true
+# Lista de paquetes a instalar con pipx
+- name: Install global python tools with pipx
+  ansible.builtin.command:
+    cmd: "pipx install {{ item }}"
+  loop:
+    - psycopg2-binary
+    - flake8
+    - yapf
+    - thefuck
+    - autoflake
+    - isort
+    - coverage
+    - python-language-server
+    - pylint
+    - pynvim
+    - pygments
+    - trollius
+    - greenlet
+    - mycli
+    - pgcli
+    - mssql-cli
+    - litecli
+    - iredis
   ignore_errors: true
