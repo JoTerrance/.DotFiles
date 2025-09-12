@@ -41,6 +41,7 @@
       - podman
       - gh
       - zoxide
+      - tree
   ignore_errors: yes 
   become: true
 
