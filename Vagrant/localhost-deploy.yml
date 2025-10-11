@@ -9,6 +9,7 @@
     eclipse_base_dir: "${HOME}/IDE/eclipse" 
   environment:    
     NIXPKGS_ALLOW_UNFREE: 1
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   tasks:  
     - name: Include task list
       include_tasks: "ansible/tasks/main.yml"
