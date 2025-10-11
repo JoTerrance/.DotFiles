@@ -1,8 +1,15 @@
-- name: Install brew
-  shell: curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash -
+- name: Download Homebrew install script
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+    dest: /tmp/install_homebrew.sh
+    mode: '0755'
+  become: false
+
+- name: Run Homebrew installer
+  shell: /bin/bash /tmp/install_homebrew.sh
   args:
+    creates: /opt/homebrew/bin/brew   # Cambia a /usr/local/bin/brew en Intel Mac
     executable: /bin/bash
-  ignore_errors: yes
   become: false
 
 - name: Export brew into path
