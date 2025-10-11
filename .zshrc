@@ -101,23 +101,16 @@ source $HOME/.aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# BEGIN ANSIBLE MANAGED BLOCK for linuxbrew
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-# END ANSIBLE MANAGED BLOCK for linuxbrew
-
-export BREW_HOME="/home/linuxbrew/.linuxbrew"
 export JAVA_OPTIONS=$JAVA_OPTIONS" -Xmx4096m -Xms4096m"
 # export PYTHONPATH=/usr/lib/python3/dist-packages/:~/.local/lib/python3.7/site-packages:/usr/lib/python3.7/
 export ANDROID_HOME=~/SDK/ANDROID/
-export BREW_HOME=~/../linuxbrew/.linuxbrew/
 alias awscli='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
 alias remoteDebugOn="export MAVEN_OPTS='-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000  -Xmx4096m -Xms4096m -XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar'"
 alias remoteDebugOff='unset MAVEN_OPTS'
 alias jhotswap="export JAVA_HOME=$HOME/hotswap/jbr-17.0.5-linux-x64-b653.6 && export PATH=$JAVA_HOME/bin:$PATH"
 unalias grv
 fpath=(~/.zsh.d/ $fpath)
-export LD_LIBRARY_PATH=/usr/local/cuda-10.2/targets/x86_64-linux/lib/:/usr/lib/python3/dist-packages/
+export LD_LIBRARY_PATH=/usr/lib/python3/dist-packages/
 export GTAGSLABEL=pygments
 export NNN_PLUG='o:fzopen;p:preview-tui;t:preview-tabbed;i:imgthumb'
 export NNN_FIFO='/tmp/nnn.fifo'
@@ -138,16 +131,16 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 # BEGIN ANSIBLE MANAGED BLOCK for jenv
 export PATH="$HOME/.jenv/bin:$PATH"
-#eval "$(jenv init -)"
+eval "$(jenv init -)"
 # END ANSIBLE MANAGED BLOCK for jenv
 
 
 if [ $commands[gh] ]; then
   source <(gh completion --shell zsh)
 fi
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64/"
-export PATH=$CMAKE_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$SALESFORCE_HOME/bin:$ECLIPSE_HOME/:$HOME/TOOLS/grv/:$PATH
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:~/.local/bin:/snap/bin:$BREW_HOME/bin
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64/"
+export PATH=$CMAKE_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$ECLIPSE_HOME/:$PATH
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$PATH:~/.local/bin:
 export PATH="/opt/nvim-linux64/bin:$HOME/go/bin:$PATH"
 
 # Generated for envman. Do not edit.
@@ -168,7 +161,6 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
-nvm use 20
+nvm use 22
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-  eval "$(github-copilot-cli alias -- "$0")"

@@ -1,5 +1,5 @@
 - name: Install sdkman 
-  shell: curl -s "https://get.sdkman.io"| zsh 
+  shell: curl -s "https://get.sdkman.io" | zsh 
   ignore_errors: yes
   become: false
 

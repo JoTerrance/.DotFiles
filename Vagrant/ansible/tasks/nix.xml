@@ -21,6 +21,18 @@
 - name: Install nix package lazydocker
   shell: nix-env -iA nixpkgs.lazydocker
 
+- name: Install nix package litecli
+  shell: nix-env -iA nixpkgs.litecli
+
+- name: Install nix package lazysql
+  shell: nix-env -iA nixpkgs.lazysql
+
+- name: Install nix package ripgrep
+  shell: nix-env -iA nixpkgs.ripgrep
+
+- name: Install nix package tmuxinator
+  shell: nix-env -iA nixpkgs.tmuxinator
+
 - name: Install nix package awscli2
   shell: nix-env -iA nixpkgs.awscli2
 
