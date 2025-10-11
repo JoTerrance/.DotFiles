@@ -1,6 +1,7 @@
-- name: Install grv
-  shell: wget -O /usr/bin/grv https://github.com/rgburke/grv/releases/download/v0.3.2/grv_v0.3.2_linux64
+- name: Install grv binary
+  ansible.builtin.get_url:
+    url: https://github.com/rgburke/grv/releases/download/v0.3.2/grv_v0.3.2_linux64
+    dest: /usr/bin/grv
+    mode: '0755'
   become: true
   ignore_errors: true
-
-
