@@ -120,19 +120,26 @@
   ignore_errors: yes
   become: false
 
-
-- name: Github cli autocompletions
-  shell: "gh completion -s zsh > /usr/local/share/zsh/site-functions/_gh"
-  become: false
-  ignore_errors: yes
-
-- name: stat gh cli
-  stat: path=/home/linuxbrew/.linuxbrew/share/zsh/site-functions/_gh
-  register: gh_cli_stat
-
-- name: Github cli autocompletions
-  command: mv /home/linuxbrew/.linuxbrew/share/zsh/site-functions/_gh /usr/local/share/zsh/site-functions/_gh
+- name: Ensure zsh completions directory exists
+  ansible.builtin.file:
+    path: /usr/local/share/zsh/site-functions
+    state: directory
+    mode: '0755'
   become: true
-  ignore_errors: yes
-  when: gh_cli_stat.stat.exists
 
+- name: Generate GitHub CLI zsh completion file
+  ansible.builtin.command:
+    cmd: gh completion -s zsh
+  register: gh_completion
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
+  changed_when: false
+  ignore_errors: yes
+
+- name: Write gh completion script to zsh site-functions
+  ansible.builtin.copy:
+    content: "{{ gh_completion.stdout }}"
+    dest: /usr/local/share/zsh/site-functions/_gh
+    mode: '0644'
+  become: true
+  when: gh_completion.rc == 0
