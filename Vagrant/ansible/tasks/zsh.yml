@@ -7,7 +7,7 @@
 - name: Cloning  oh-my-zsh
   git:
     repo=https://github.com/robbyrussell/oh-my-zsh
-    dest=~/.oh-my-zsh
+    dest: ~/.oh-my-zsh
     depth: 1
   register: cloning
   when: not previous_zsh_instalation.stat.exists
