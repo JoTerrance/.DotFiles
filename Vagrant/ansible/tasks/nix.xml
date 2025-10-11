@@ -33,6 +33,9 @@
 - name: Install nix package tmuxinator
   shell: nix-env -iA nixpkgs.tmuxinator
 
+- name: Install nix package postman
+  shell: nix-env -iA nixpkgs.postman
+
 - name: Install nix package awscli2
   shell: nix-env -iA nixpkgs.awscli2
 

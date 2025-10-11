@@ -29,29 +29,11 @@
     upgrade_all: yes
   ignore_errors: yes
 
-- name: Install lazydocker
-  homebrew:
-    name: jesseduffield/lazydocker/lazydocker
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
 
-- name: Install lazygit
-  homebrew:
-    name: jesseduffield/lazygit/lazygit
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install postman
-  homebrew:
-    name: postman
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
+- name: Install lazygit lazydocker lazynpm dry using Brew Tap
+  community.general.homebrew_tap:
+    name: jesseduffield/lazydocker,jesseduffield/lazygit,jesseduffield/lazynpm,moncho/dry
+    state: present
 
 - name: Install tig
   homebrew:
@@ -61,25 +43,10 @@
   ignore_errors: yes
   become: false
 
-- name: Install lazynpm
-  homebrew:
-    name: jesseduffield/lazynpm/lazynpm
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
 
 - name: Install ctop
   homebrew:
     name: ctop
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install dry
-  homebrew:
-    name: moncho/dry/dry
     path: /home/linuxbrew/.linuxbrew/bin
     state: latest
   ignore_errors: yes
@@ -141,7 +108,7 @@
   ignore_errors: yes
   become: false
 
-  - name: Install lnav
+- name: Install lnav
   homebrew:
     name: lnav
     path: /home/linuxbrew/.linuxbrew/bin

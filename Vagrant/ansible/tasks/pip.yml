@@ -12,7 +12,6 @@
   ansible.builtin.command:
     cmd: "pipx install {{ item }}"
   loop:
-    - psycopg2-binary
     - flake8
     - yapf
     - thefuck
@@ -23,12 +22,9 @@
     - pylint
     - pynvim
     - pygments
-    - trollius
-    - greenlet
     - mycli
     - pgcli
     - mssql-cli
     - litecli
     - iredis
-    - distutils
   ignore_errors: true
