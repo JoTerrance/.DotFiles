@@ -21,8 +21,11 @@
 
 - name: Update brew
   shell: brew update
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   ignore_errors: yes
   become: false
+  
 
 - name: Homebrew upgrading all
   homebrew:
