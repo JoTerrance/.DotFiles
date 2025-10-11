@@ -6,47 +6,31 @@
   become: false
 
 - name: Run nvm installer
-  ansible.builtin.command:
-    cmd: zsh /tmp/install_nvm.sh
+  shell: bash /tmp/install_nvm.sh
   args:
-    chdir: /tmp
-  become: false
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
   environment:
-    PROFILE: "~/.zshrc"
-  creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
-- name: Install node in zsh
-  shell: source ~/.zshrc && nvm install node
-  args:
-    executable: /bin/zsh
+    PROFILE: "{{ ansible_env.HOME }}/.bashrc"
   become: false
-  ignore_errors: true
-   
-- name: Install npm in zsh
-  shell: source ~/.zshrc && nvm install-latest-npm
+
+- name: Ensure nvm is loaded and install Node
+  shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install node
+    nvm install-latest-npm
   args:
-   executable: /bin/zsh
-  become: false  
-  ignore_errors: true
+    executable: /bin/bash
+  become: false
 
-- name: Install nvm in bash
-  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-- name: Install "pyright" package globally.
+- name: Install global npm packages
   npm:
-    name: pyright
+    name: "{{ item }}"
     global: yes
-  become: true
-
-- name: Install "dockly" package globally.
-  npm:
-    name: dockly
-    global: yes
-  become: true
-
-- name: Install "fkill-cli" package globally.
-  npm:
-    name: fkill-cli
-    global: yes
-  become: true
-    
+  loop:
+    - pyright
+    - dockly
+    - fkill-cli
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/$(ls {{ ansible_env.HOME }}/.nvm/versions/node | sort -V | tail -n1)/bin/:{{ ansible_env.PATH }}"
+  become: false
