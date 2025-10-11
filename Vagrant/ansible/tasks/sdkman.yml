@@ -1,12 +1,22 @@
-- name: Install sdkman 
-  shell: curl -s "https://get.sdkman.io" | zsh 
-  ignore_errors: yes
-  become: false
+- name: Check if sdkman is installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"
+  register: sdkman_stat
 
-- name: sdkman install java
-  shell: source ~/.zshrc && sdk install java
+- name: Install sdkman
+  shell: curl -s "https://get.sdkman.io" | bash
   args:
-    executable: /bin/zsh
+    executable: /bin/bash
+  when: not sdkman_stat.stat.exists
   ignore_errors: yes
   become: false
 
+- name: Install Java using sdkman
+  shell: |
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk install java
+  args:
+    executable: /bin/bash
+  when: sdkman_stat.stat.exists
+  ignore_errors: yes
+  become: false
