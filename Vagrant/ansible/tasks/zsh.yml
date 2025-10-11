@@ -89,29 +89,29 @@
 
 - name: pgcli symlink
   file: 
-    path: ~/.DotFiles/pgcli/config
-    src: ~/.config/pgcli/config
+    src: ~/.DotFiles/pgcli/config
+    path: ~/.config/pgcli/config
     state: link 
     force: yes
 
 - name: litecli symlink
   file: 
-    path: ~/.DotFiles/litecli/config 
-    src:   ~/.config/litecli/config
+    src: ~/.DotFiles/litecli/config 
+    path:   ~/.config/litecli/config
     state: link 
     force: yes
 
 - name: mssql symlink
   file: 
-    path: ~/.DotFiles/mssqlcli/config
-    src:  ~/.config/mssqlcli/config 
+    src: ~/.DotFiles/mssqlcli/config
+    path:  ~/.config/mssqlcli/config 
     state: link 
     force: yes
 
 - name: iredis symlink
   file: 
-    path: ~/.DotFiles/iredis/.iredisrc 
-    src:  ~/.iredisrc 
+    src: ~/.DotFiles/iredis/.iredisrc 
+    path:  ~/.iredisrc 
     state: link 
     force: yes
 
