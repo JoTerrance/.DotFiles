@@ -164,3 +164,7 @@ _fzf_comprun() {
 nvm use 22
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+if [ -e /home/joterrance/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joterrance/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

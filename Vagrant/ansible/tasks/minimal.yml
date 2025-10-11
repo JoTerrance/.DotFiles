@@ -7,8 +7,84 @@
     pkg:
       - zsh
       - mc
+      - zoxide
+      - fzf
   ignore_errors: yes 
   become: true
 
-- include: zsh.yml
-- include: zoxide.yml
+
+- name: Check if oh-my-zsh previous installed
+  stat: 
+    path: ~/.oh-my-zsh
+  register: previous_zsh_instalation
+  become: false
+
+- name: Cloning  oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+    depth: 1
+  register: cloning
+  when: not previous_zsh_instalation.stat.exists
+  become: false
+- name: Installing git configfiles
+  git:
+    repo: https://github.com/JoTerrance/.DotFiles.git
+    dest: ~/.DotFiles
+    depth: 1
+  ignore_errors: yes
+
+- name: zshrc symlink
+  file: 
+    src: ~/.DotFiles/.zshrc
+    dest: ~/.zshrc  
+    state: link 
+    force: yes
+
+- name: zsh-history-substring-search
+  git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+    depth: 1
+
+- name: zsh-vi-mode
+  git:
+    repo: https://github.com/jeffreytse/zsh-vi-mode.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-vi-mode
+    depth: 1
+
+- name: zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    depth: 1
+
+- name: zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    depth: 1
+
+- name: Installing zsh completions
+  git:
+    repo: https://github.com/zsh-users/zsh-completions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+    depth: 1
+
+- name: Installing zsh-history-substring
+  git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+    depth: 1
+
+
+- name: Installing-pure-prompt
+  git:
+    repo: https://github.com/sindresorhus/pure.git
+    dest: ~/.zsh/pure
+    version: main
+    depth: 1
+
+- name: change shell to zsh
+  shell: "chsh -s /usr/bin/zsh"
+  become: true

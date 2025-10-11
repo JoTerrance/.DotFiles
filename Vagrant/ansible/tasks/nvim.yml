@@ -10,6 +10,7 @@
   git:
     repo: https://github.com/JoTerrance/BlindNvim.git
     dest: ~/.config/nvim
+    depth: 1
   ignore_errors: yes
 
 

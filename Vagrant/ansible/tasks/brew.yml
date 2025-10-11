@@ -72,6 +72,7 @@
   git:
     repo: https://github.com/junegunn/fzf.git
     dest: ~/.fzf
+    depth: 1
 
 - name: Installing fzf
   shell: "~/.fzf/install"

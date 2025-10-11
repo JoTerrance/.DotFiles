@@ -1,0 +1,126 @@
+- name: Download Nix package manager script
+  get_url: 
+      url: https://nixos.org/nix/install
+      dest: /tmp/nix.sh
+      mode: 0755
+  ignore_errors: true
+      
+- name: Install nix package manager from tmp
+  shell: /tmp/nix.sh --no-daemon
+  ignore_errors: true
+
+- name: Source nix profile to make nix-env available
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+
+- name: Install nix package eclipse
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.eclipses.eclipse-jee
+  args:
+    executable: /bin/bash
+
+- name: Install nix package vscode
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.vscode
+  args:
+    executable: /bin/bash
+
+- name: Install nix package lazygit
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.lazygit
+  args:
+    executable: /bin/bash
+
+- name: Install nix package lazydocker
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.lazydocker
+  args:
+    executable: /bin/bash
+
+- name: Install nix package litecli
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.litecli
+  args:
+    executable: /bin/bash
+
+- name: Install nix package lazysql
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.lazysql
+  args:
+    executable: /bin/bash
+
+- name: Install nix package ripgrep
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.ripgrep
+  args:
+    executable: /bin/bash
+
+- name: Install nix package tmuxinator
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.tmuxinator
+  args:
+    executable: /bin/bash
+
+- name: Install nix package postman
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.postman
+  args:
+    executable: /bin/bash
+
+- name: Install nix package awscli2
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.awscli2
+  args:
+    executable: /bin/bash
+
+- name: Install nix package rustup
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.rustup
+  args:
+    executable: /bin/bash
+
+- name: Install nix package k3s
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.k3s
+  args:
+    executable: /bin/bash
+
+- name: Install nix package gh
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.gh
+  args:
+    executable: /bin/bash
+
+- name: Install nix package nodePackage.serverless
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.nodePackages.serverless
+  args:
+    executable: /bin/bash
+
+- name: Install nix package ccls
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.ccls
+  args:
+    executable: /bin/bash
+
+- name: Install nix package dbeaver
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.dbeaver-bin
+  args:
+    executable: /bin/bash
+
+- name: Install nix package cheat
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.cheat
+  args:
+    executable: /bin/bash
+
+- name: Install nix package neovim
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.neovim
+  args:
+    executable: /bin/bash
+
+- name: Install nix package zoxide
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.zoxide
+  args:
+    executable: /bin/bash
+
+- name: Install nix package vagrant
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.vagrant
+  args:
+    executable: /bin/bash
+  
+- name: Install nix package terraform
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.terraform
+  args:
+    executable: /bin/bash
+
+- name: Install nix package burpsuite
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.burpsuite
+  args:
+    executable: /bin/bash

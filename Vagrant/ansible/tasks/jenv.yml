@@ -2,6 +2,7 @@
   git: 
     repo: https://github.com/jenv/jenv.git 
     dest: ~/.jenv
+    depth: 1
 
 - name: Install brew into path
   blockinfile:
