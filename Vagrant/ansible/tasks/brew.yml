@@ -45,36 +45,21 @@
     name: jesseduffield/lazydocker,jesseduffield/lazygit,jesseduffield/lazynpm,moncho/dry
     state: present
 
-- name: Install tig
+- name: Install packages with Homebrew
   homebrew:
-    name: tig
+    name: "{{ item }}"
     path: /home/linuxbrew/.linuxbrew/bin
     state: latest
-  ignore_errors: yes
-  become: false
-
-
-- name: Install ctop
-  homebrew:
-    name: ctop
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install helm
-  homebrew:
-    name: helm
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install lf
-  homebrew:
-    name: lf
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
+  loop:
+    - tig
+    - ctop
+    - helm
+    - lf
+    - dive
+    - stern
+    - tmuxinator
+    - ripgrep
+    - lnav
   ignore_errors: yes
   become: false
 
@@ -86,46 +71,6 @@
 
 - name: Installing fzf
   shell: "~/.fzf/install"
-
-- name: Install dive
-  homebrew:
-    name: dive
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install stern
-  homebrew:
-    name: stern
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install tmuxinator
-  homebrew:
-    name: tmuxinator
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install ripgrep
-  homebrew:
-    name: ripgrep
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
-
-- name: Install lnav
-  homebrew:
-    name: lnav
-    path: /home/linuxbrew/.linuxbrew/bin
-    state: latest
-  ignore_errors: yes
-  become: false
 
 - name: Ensure zsh completions directory exists
   ansible.builtin.file:
