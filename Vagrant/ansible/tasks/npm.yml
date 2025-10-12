@@ -1,6 +1,6 @@
 - name: Download nvm install script
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh
     dest: /tmp/install_nvm.sh
     mode: '0755'
   become: false
@@ -13,12 +13,14 @@
     PROFILE: "{{ ansible_env.HOME }}/.bashrc"
   become: false
 
-- name: Ensure nvm is loaded and install Node
+- name: Ensure nvm is loaded and install latest Node LTS
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install node
-    nvm install-latest-npm
+    nvm install --lts
+    nvm use --lts
+    nvm alias default 'lts/*'
+    npm install -g npm@latest
   args:
     executable: /bin/bash
   become: false

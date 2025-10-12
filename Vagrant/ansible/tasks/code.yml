@@ -1,0 +1,13 @@
+
+- name: Download VS Code Server
+  ansible.builtin.get_url:
+    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    dest: /tmp/vscode-server-linux.deb
+    mode: '0644'
+
+- name: Install VS Code from deb package
+  ansible.builtin.apt:
+    deb: /tmp/vscode-server-linux.deb
+    state: present
+  become: true
+
