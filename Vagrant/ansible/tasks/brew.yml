@@ -60,6 +60,7 @@
     - tmuxinator
     - ripgrep
     - lnav
+    - terraform
   ignore_errors: yes
   become: false
 

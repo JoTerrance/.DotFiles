@@ -26,13 +26,10 @@
   become: false
 
 - name: Install global npm packages
-  npm:
-    name: "{{ item }}"
-    global: yes
-  loop:
-    - pyright
-    - dockly
-    - fkill-cli
-  environment:
-    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/$(ls {{ ansible_env.HOME }}/.nvm/versions/node | sort -V | tail -n1)/bin/:{{ ansible_env.PATH }}"
+  shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    npm install -g pyright dockly fkill-cli
+  args:
+    executable: /bin/bash
   become: false
