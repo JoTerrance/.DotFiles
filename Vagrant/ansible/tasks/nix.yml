@@ -9,11 +9,6 @@
   args:
     executable: /bin/bash
 
-- name: Install nix package vscode
-  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.vscode
-  args:
-    executable: /bin/bash
-
 - name: Install nix package lazygit
   shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.lazygit
   args:
