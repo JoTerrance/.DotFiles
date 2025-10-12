@@ -42,7 +42,7 @@
 
 - name: Install lazygit lazydocker lazynpm dry using Brew Tap
   community.general.homebrew_tap:
-    name: jesseduffield/lazydocker,jesseduffield/lazygit,jesseduffield/lazynpm,moncho/dry
+    name: jesseduffield/lazydocker,hashicorp/tap,jesseduffield/lazygit,jesseduffield/lazynpm,moncho/dry
     state: present
 
 - name: Install packages with Homebrew
@@ -61,6 +61,10 @@
     - ripgrep
     - lnav
     - terraform
+    - dry
+    - lazygit
+    - lazydocker
+    - lazynpm
   ignore_errors: yes
   become: false
 

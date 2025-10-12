@@ -134,6 +134,9 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 # END ANSIBLE MANAGED BLOCK for jenv
 
+# BEGIN ANSIBLE MANAGED BLOCK for linuxbrew
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+# END ANSIBLE MANAGED BLOCK for linuxbrew
 
 if [ $commands[gh] ]; then
   source <(gh completion --shell zsh)
@@ -168,6 +171,4 @@ nvm use 22
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 if [ -e /home/joterrance/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joterrance/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-# BEGIN ANSIBLE MANAGED BLOCK for linuxbrew
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-# END ANSIBLE MANAGED BLOCK for linuxbrew
+

@@ -13,6 +13,8 @@
       - mc
       - net-tools
       - terminator
+      - tmuxinator
+      - ripgrep
       - curl
       - wget
       - git
