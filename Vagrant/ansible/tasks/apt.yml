@@ -44,6 +44,9 @@
       - gh
       - zoxide
       - tree
+      - lua5.1
+      - liblua5.1.0
+      - liblua5.1-dev
       - lua5.4
       - liblua5.4.0
       - liblua5.4-dev 
