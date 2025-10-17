@@ -1,0 +1,52 @@
+- name: Download Helix editor tarball
+  ansible.builtin.get_url:
+    url: https://github.com/helix-editor/helix/releases/download/25.01/helix-25.01-x86_64-linux.tar.xz
+    dest: /tmp/helix.tar.xz
+    mode: '0644'
+  become: false
+
+- name: Create temporary extraction directory
+  ansible.builtin.file:
+    path: /tmp/helix-extract
+    state: directory
+    mode: '0755'
+  become: false
+
+- name: Extract Helix tarball
+  ansible.builtin.unarchive:
+    src: /tmp/helix.tar.xz
+    dest: /tmp/helix-extract
+    remote_src: yes
+  become: false
+
+- name: Copy Helix binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: /tmp/helix-extract/helix-25.01-x86_64-linux/hx
+    dest: /usr/local/bin/hx
+    mode: '0755'
+    remote_src: yes
+  become: true
+
+- name: Create Helix runtime directory
+  ansible.builtin.file:
+    path: /usr/local/lib/helix
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Copy Helix runtime files
+  ansible.builtin.copy:
+    src: /tmp/helix-extract/helix-25.01-x86_64-linux/runtime/
+    dest: /usr/local/lib/helix/runtime
+    mode: '0755'
+    remote_src: yes
+  become: true
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /tmp/helix.tar.xz
+    - /tmp/helix-extract
+  become: false

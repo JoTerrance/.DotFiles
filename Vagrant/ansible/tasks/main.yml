@@ -10,6 +10,7 @@
 - include_tasks: pip.yml
 - include_tasks: sdkman.yml 
 - include_tasks: nvim.yml
+- include_tasks: helix.yml
 - include_tasks: nnn.yml
 - include_tasks: grv.yml
 - include_tasks: code.yml
