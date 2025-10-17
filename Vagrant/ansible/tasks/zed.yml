@@ -1,0 +1,13 @@
+- name: Download Zed Editor install script
+  ansible.builtin.get_url:
+    url: https://zed.dev/install.sh
+    dest: /tmp/install_zed.sh
+    mode: '0755'
+  become: false
+
+- name: Run Zed installer
+  shell: /bin/bash /tmp/install_zed.sh
+  args:
+    creates: "{{ ansible_env.HOME }}/.local/bin/zed"
+    executable: /bin/bash
+  become: false
