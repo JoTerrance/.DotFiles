@@ -8,6 +8,6 @@
 - name: Run Zed installer
   shell: /bin/bash /tmp/install_zed.sh
   args:
-    creates: ~/.local/bin/zed
+    creates: "{{ ansible_env.HOME }}/.local/bin/zed"
     executable: /bin/bash
   become: false
