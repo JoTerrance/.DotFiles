@@ -14,6 +14,11 @@
   args:
     executable: /bin/bash
 
+- name: Install nix package luarocks
+  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.luarocks-nix
+  args:
+    executable: /bin/bash
+
 - name: Install nix package lazydocker
   shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.lazydocker
   args:
