@@ -50,6 +50,7 @@
       - lua5.4
       - liblua5.4.0
       - liblua5.4-dev 
+      - luarocks
   ignore_errors: yes 
   become: true
 
