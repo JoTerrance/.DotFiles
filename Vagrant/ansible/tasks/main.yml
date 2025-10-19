@@ -15,4 +15,4 @@
 - include_tasks: code.yml
 - include_tasks: zed.yml
 - include_tasks: helix.yml
-  
+- include_tasks: nerd-fonts.yml

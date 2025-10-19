@@ -1,0 +1,29 @@
+
+- name: Download Hack Nerd Font
+  get_url:
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip" 
+    dest: "/tmp/Hack.zip"
+    mode: '0644'
+
+- name: Unzip Hack Nerd Font
+  unarchive:
+    src: "/tmp/Hack.zip"
+    dest: "/usr/local/share/fonts/"
+    remote_src: yes
+  become: true
+
+- name: Refresh font cache
+  command: fc-cache -fv   
+  args:
+      creates: "/usr/local/share/fonts/HackNerdFont-Regular.ttf"
+
+- name: Clean up Hack Nerd Font zip file
+  file:
+    path: "/tmp/Hack.zip"
+    state: absent 
+
+- name: Verify Hack Nerd Font installation
+  stat:
+    path: "/usr/local/share/fonts/HackNerdFont-Regular.ttf"
+  register: hack_font_check
+
