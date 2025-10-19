@@ -51,6 +51,7 @@
       - liblua5.4-0
       - liblua5.4-dev 
       - luarocks
+      - xclip
   ignore_errors: yes 
   become: true
 
