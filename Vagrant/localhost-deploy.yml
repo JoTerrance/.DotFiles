@@ -6,12 +6,31 @@
   vars:
     ansible_python_interpreter: python3
     ansible_pkg_mgr: apt
-    eclipse_base_dir: "${HOME}/IDE/eclipse" 
+    eclipse_base_dir: "${HOME}/IDE/eclipse"
+  vars_files:
+    - ansible/vars/telegram.yml 
   environment:    
     NIXPKGS_ALLOW_UNFREE: 1
     PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
-  tasks:  
+  tasks:
     - name: Include task list
       include_tasks: "ansible/tasks/main.yml"
+
+  post_tasks:
+    - name: Send Telegram notification on completion
+      community.general.telegram:
+        token: "{{ telegram_bot_token }}"
+        api_method: sendMessage
+        api_args:
+          chat_id: "{{ telegram_chat_id }}"
+          text: |
+            ✅ Ansible playbook completed successfully!
+
+            Host: {{ inventory_hostname }}
+            Playbook: {{ ansible_play_name }}
+            Date: {{ ansible_date_time.iso8601 }}
+          parse_mode: Markdown
+      when: telegram_bot_token is defined and telegram_chat_id is defined
+      ignore_errors: yes
 
 
