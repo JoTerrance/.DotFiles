@@ -54,6 +54,7 @@
       - xclip
       - pipx
       - python3-venv
+      - software-properties-common
   ignore_errors: yes 
   become: true
 

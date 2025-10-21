@@ -1,11 +1,3 @@
-- name: Ensure software-properties-common is installed
-  ansible.builtin.apt:
-    name: software-properties-common
-    state: present
-    update_cache: yes
-  become: true
-  when: ansible_facts.distribution == "Ubuntu"
-
 - name: Add Helix PPA and update apt cache
   ansible.builtin.apt_repository:
     repo: 'ppa:maveonair/helix-editor'
