@@ -52,6 +52,8 @@
       - liblua5.4-dev 
       - luarocks
       - xclip
+      - pipx
+      - python3-venv
   ignore_errors: yes 
   become: true
 

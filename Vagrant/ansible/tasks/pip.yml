@@ -1,12 +1,3 @@
-- name: Ensure pipx and dependencies are installed
-  become: true
-  ansible.builtin.apt:
-    name:
-      - pipx
-      - python3-venv
-    state: present
-    update_cache: true
-
 # Lista de paquetes a instalar con pipx
 - name: Install global python tools with pipx
   ansible.builtin.command:
