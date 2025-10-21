@@ -37,6 +37,8 @@
 - name: Homebrew upgrading all
   homebrew:
     upgrade_all: yes
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   ignore_errors: yes
 
 
@@ -44,6 +46,8 @@
   community.general.homebrew_tap:
     name: jesseduffield/lazydocker,hashicorp/tap,jesseduffield/lazygit,jesseduffield/lazynpm,moncho/dry
     state: present
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
 
 - name: Install packages with Homebrew
   homebrew:
@@ -65,6 +69,8 @@
     - lazygit
     - lazydocker
     - lazynpm
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   ignore_errors: yes
   become: false
 
@@ -82,7 +88,10 @@
     path: /usr/local/share/zsh/site-functions
     state: directory
     mode: '0755'
+  vars:
+    ansible_command_timeout: 30
   become: true
+  ignore_errors: yes
 
 - name: Generate GitHub CLI zsh completion file
   ansible.builtin.command:
