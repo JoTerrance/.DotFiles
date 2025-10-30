@@ -69,6 +69,7 @@
     - lazygit
     - lazydocker
     - lazynpm
+    - k9s
   environment:
     PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   ignore_errors: yes
