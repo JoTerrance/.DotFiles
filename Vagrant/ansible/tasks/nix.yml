@@ -69,11 +69,6 @@
   args:
     executable: /bin/bash
 
-- name: Install nix package nodePackage.serverless
-  shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.nodePackages.serverless
-  args:
-    executable: /bin/bash
-
 - name: Install nix package ccls
   shell: . ~/.nix-profile/etc/profile.d/nix.sh && nix-env -iA nixpkgs.ccls
   args:
