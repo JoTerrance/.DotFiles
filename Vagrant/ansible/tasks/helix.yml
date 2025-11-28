@@ -4,6 +4,7 @@
     state: present
     update_cache: yes
   become: true
+  ignore_errors: true
   when: ansible_facts.distribution == "Ubuntu"
 
 - name: Install Helix
@@ -12,4 +13,5 @@
     state: present
     update_cache: yes
   become: true
+  ignore_errors: true
   when: ansible_facts.distribution == "Ubuntu"
