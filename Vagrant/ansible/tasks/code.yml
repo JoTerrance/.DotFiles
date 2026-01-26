@@ -10,4 +10,4 @@
     deb: /tmp/vscode-linux.deb
     state: present
   become: true
-
+  ignore_errors: true
