@@ -38,7 +38,7 @@
 
 - name: mycli symlink
   file: 
-    src: ~/.DotFiles/config/mycli/config 
+    src: ~/.DotFiles/config/mycli/.myclirc 
     dest: ~/.myclirc  
     state: link 
     force: yes
