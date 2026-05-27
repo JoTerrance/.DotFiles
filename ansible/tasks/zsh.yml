@@ -37,12 +37,14 @@
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     depth: 1
 
-- name: Installing git configfiles
+- name: Clone or update dotfiles
   git:
     repo: https://github.com/JoTerrance/.DotFiles.git
     dest: ~/.DotFiles
     depth: 1
-  ignore_errors: yes
+    update: yes
+    force: yes
+  become: false
 
 - name: zshrc symlink
   file: 
