@@ -38,35 +38,35 @@
 
 - name: mycli symlink
   file: 
-    src: ~/.DotFiles/mycli/config 
+    src: ~/.DotFiles/config/mycli/config 
     dest: ~/.myclirc  
     state: link 
     force: yes
 
 - name: pgcli symlink
   file: 
-    src: ~/.DotFiles/pgcli/config
+    src: ~/.DotFiles/config/pgcli/config
     dest: ~/.config/pgcli/config
     state: link 
     force: yes
 
 - name: litecli symlink
   file: 
-    src: ~/.DotFiles/litecli/config 
+    src: ~/.DotFiles/config/litecli/config 
     dest:   ~/.config/litecli/config
     state: link 
     force: yes
 
 - name: mssql symlink
   file: 
-    src: ~/.DotFiles/mssqlcli/config
+    src: ~/.DotFiles/config/mssqlcli/config
     dest:  ~/.config/mssqlcli/config 
     state: link 
     force: yes
 
 - name: iredis symlink
   file: 
-    src: ~/.DotFiles/iredis/.iredisrc 
+    src: ~/.DotFiles/config/iredis/.iredisrc 
     dest:  ~/.iredisrc 
     state: link 
     force: yes
