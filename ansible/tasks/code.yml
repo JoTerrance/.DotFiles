@@ -28,7 +28,7 @@
 
 - name: Update apt cache after adding VS Code repository
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
   become: true
 
 - name: Install VS Code
