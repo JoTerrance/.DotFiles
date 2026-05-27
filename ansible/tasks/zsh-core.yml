@@ -1,7 +1,7 @@
-- name: Check if oh-my-zsh previous installed
+- name: Check if oh-my-zsh already installed
   stat:
     path: ~/.oh-my-zsh
-  register: previous_zsh_instalation
+  register: previous_zsh_installation
   become: false
 
 - name: Cloning  oh-my-zsh
@@ -10,7 +10,7 @@
     dest: ~/.oh-my-zsh
     depth: 1
   register: cloning
-  when: not previous_zsh_instalation.stat.exists
+  when: not previous_zsh_installation.stat.exists
   become: false
 
 - name: zsh-history-substring-search
