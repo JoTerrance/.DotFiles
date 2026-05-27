@@ -11,16 +11,24 @@
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x355A4FA515D7C855
     dest: /etc/apt/keyrings/helix-editor.asc
     mode: "0644"
+  register: helix_signing_key_download
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: Check Helix keyring state
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings/helix-editor.gpg
+  register: helix_keyring_stat
   become: true
   when: ansible_facts.distribution == "Ubuntu"
 
 - name: Convert Helix signing key to gpg format
   ansible.builtin.command:
-    cmd: gpg --dearmor --output /etc/apt/keyrings/helix-editor.gpg /etc/apt/keyrings/helix-editor.asc
-  args:
-    creates: /etc/apt/keyrings/helix-editor.gpg
+    cmd: gpg --dearmor --yes --output /etc/apt/keyrings/helix-editor.gpg /etc/apt/keyrings/helix-editor.asc
   become: true
-  when: ansible_facts.distribution == "Ubuntu"
+  when:
+    - ansible_facts.distribution == "Ubuntu"
+    - helix_signing_key_download.changed or not helix_keyring_stat.stat.exists
 
 - name: Add Helix PPA and update apt cache
   ansible.builtin.apt_repository:
