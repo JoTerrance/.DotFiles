@@ -30,6 +30,14 @@
     - ansible_facts.distribution == "Ubuntu"
     - helix_signing_key_download.changed or not helix_keyring_stat.stat.exists
 
+- name: Ensure Helix keyring file permissions
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/helix-editor.gpg
+    mode: "0644"
+    state: file
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
 - name: Add Helix PPA and update apt cache
   ansible.builtin.apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/helix-editor.gpg] https://ppa.launchpadcontent.net/maveonair/helix-editor/ubuntu {{ ansible_distribution_release }} main"
