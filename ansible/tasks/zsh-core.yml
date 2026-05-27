@@ -18,24 +18,28 @@
     repo: https://github.com/zsh-users/zsh-history-substring-search.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
     depth: 1
+  become: false
 
 - name: zsh-vi-mode
   git:
     repo: https://github.com/jeffreytse/zsh-vi-mode.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-vi-mode
     depth: 1
+  become: false
 
 - name: zsh-syntax-highlighting
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     depth: 1
+  become: false
 
 - name: zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     depth: 1
+  become: false
 
 - name: Clone or update dotfiles
   git:
@@ -58,6 +62,7 @@
     repo: https://github.com/zsh-users/zsh-completions.git
     dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
     depth: 1
+  become: false
 
 - name: Installing-pure-prompt
   git:
@@ -65,3 +70,4 @@
     dest: ~/.zsh/pure
     version: main
     depth: 1
+  become: false
