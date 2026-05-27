@@ -1,6 +1,48 @@
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: Download Helix PPA signing key
+  ansible.builtin.get_url:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x355A4FA515D7C855
+    dest: /etc/apt/keyrings/helix-editor.asc
+    mode: "0644"
+  register: helix_signing_key_download
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: Check Helix keyring state
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings/helix-editor.gpg
+  register: helix_keyring_stat
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: Convert Helix signing key to gpg format
+  ansible.builtin.command:
+    cmd: gpg --dearmor --yes --output /etc/apt/keyrings/helix-editor.gpg /etc/apt/keyrings/helix-editor.asc
+  changed_when: helix_signing_key_download.changed or not helix_keyring_stat.stat.exists
+  become: true
+  when:
+    - ansible_facts.distribution == "Ubuntu"
+    - helix_signing_key_download.changed or not helix_keyring_stat.stat.exists
+
+- name: Ensure Helix keyring file permissions
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/helix-editor.gpg
+    mode: "0644"
+    state: file
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
 - name: Add Helix PPA and update apt cache
   ansible.builtin.apt_repository:
-    repo: 'ppa:maveonair/helix-editor'
+    repo: "deb [signed-by=/etc/apt/keyrings/helix-editor.gpg] https://ppa.launchpadcontent.net/maveonair/helix-editor/ubuntu {{ ansible_distribution_release }} main"
+    filename: helix-editor
     state: present
     update_cache: yes
   become: true
@@ -11,7 +53,7 @@
   ansible.builtin.apt:
     name: helix
     state: present
-    update_cache: yes
+    update_cache: true
   become: true
   ignore_errors: true
   when: ansible_facts.distribution == "Ubuntu"
