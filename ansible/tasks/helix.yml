@@ -39,9 +39,23 @@
   become: true
   when: ansible_facts.distribution == "Ubuntu"
 
+- name: Select Helix PPA Ubuntu suite
+  ansible.builtin.set_fact:
+    helix_ppa_supported_releases:
+      - focal
+      - jammy
+      - noble
+    helix_ppa_release: >-
+      {{
+        ansible_facts["distribution_release"]
+        if ansible_facts["distribution_release"] in helix_ppa_supported_releases
+        else "noble"
+      }}
+  when: ansible_facts.distribution == "Ubuntu"
+
 - name: Add Helix PPA and update apt cache
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/helix-editor.gpg] https://ppa.launchpadcontent.net/maveonair/helix-editor/ubuntu {{ ansible_distribution_release }} main"
+    repo: "deb [signed-by=/etc/apt/keyrings/helix-editor.gpg] https://ppa.launchpadcontent.net/maveonair/helix-editor/ubuntu {{ helix_ppa_release }} main"
     filename: helix-editor
     state: present
     update_cache: yes
