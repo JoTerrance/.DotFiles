@@ -36,39 +36,53 @@
     mode: '0755'
   ignore_errors: yes
 
+- name: i3 config folder
+  file: 
+    path: ~/.config/i3/  
+    state: directory 
+    mode: '0755'
+  ignore_errors: yes
+
 - name: mycli symlink
   file: 
-    src: ~/.DotFiles/mycli/config 
+    src: ~/.DotFiles/config/mycli/.myclirc 
     dest: ~/.myclirc  
     state: link 
     force: yes
 
 - name: pgcli symlink
   file: 
-    src: ~/.DotFiles/pgcli/config
+    src: ~/.DotFiles/config/pgcli/config
     dest: ~/.config/pgcli/config
     state: link 
     force: yes
 
 - name: litecli symlink
   file: 
-    src: ~/.DotFiles/litecli/config 
+    src: ~/.DotFiles/config/litecli/config 
     dest:   ~/.config/litecli/config
     state: link 
     force: yes
 
 - name: mssql symlink
   file: 
-    src: ~/.DotFiles/mssqlcli/config
+    src: ~/.DotFiles/config/mssqlcli/config
     dest:  ~/.config/mssqlcli/config 
     state: link 
     force: yes
 
 - name: iredis symlink
   file: 
-    src: ~/.DotFiles/iredis/.iredisrc 
+    src: ~/.DotFiles/config/iredis/.iredisrc 
     dest:  ~/.iredisrc 
     state: link 
+    force: yes
+
+- name: i3 symlink
+  file:
+    src: ~/.DotFiles/config/i3/config
+    dest: ~/.config/i3/config
+    state: link
     force: yes
 
 - name: change shell to zsh for current user
