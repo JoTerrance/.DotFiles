@@ -27,12 +27,20 @@
   register: cloning
   when: not previous_zsh_instalation.stat.exists
   become: false
+
+- name: Check if dotfiles previous installed
+  stat:
+    path: ~/.DotFiles
+  register: previous_dotfiles_instalation
+  become: false
+
 - name: Installing git configfiles
   git:
     repo: https://github.com/JoTerrance/.DotFiles.git
     dest: ~/.DotFiles
     depth: 1
-  ignore_errors: yes
+  when: not previous_dotfiles_instalation.stat.exists
+  become: false
 
 - name: zshrc symlink
   file: 
