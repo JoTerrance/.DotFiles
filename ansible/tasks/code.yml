@@ -1,13 +1,38 @@
 
-- name: Download VS Code Server
-  ansible.builtin.get_url:
-    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-    dest: /tmp/vscode-linux.deb
-    mode: '0644'
+- name: Ensure keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  become: true
 
-- name: Install VS Code from deb package
+- name: Add Microsoft GPG key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/microsoft.asc
+    mode: '0644'
+  become: true
+
+- name: Add VS Code apt repository
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/vscode.sources
+    content: |
+      Types: deb
+      URIs: https://packages.microsoft.com/repos/code
+      Suites: stable
+      Components: main
+      Arch: amd64,arm64,armhf
+      Signed-By: /etc/apt/keyrings/microsoft.asc
+    mode: '0644'
+  become: true
+
+- name: Update apt cache after adding VS Code repository
   ansible.builtin.apt:
-    deb: /tmp/vscode-linux.deb
+    update_cache: true
+  become: true
+
+- name: Install VS Code
+  ansible.builtin.apt:
+    name: code
     state: present
   become: true
-  ignore_errors: true
