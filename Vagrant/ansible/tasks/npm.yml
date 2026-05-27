@@ -1,6 +1,6 @@
 - name: Download nvm install script
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh
     dest: /tmp/install_nvm.sh
     mode: '0755'
   become: false
@@ -29,7 +29,8 @@
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    pnpm add -g pyright dockly fkill-cli
+    npm add -g pyright dockly fkill-cli
   args:
     executable: /bin/bash
   become: false
+  ignore_errors: true
