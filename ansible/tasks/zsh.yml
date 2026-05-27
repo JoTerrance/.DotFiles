@@ -36,6 +36,13 @@
     mode: '0755'
   ignore_errors: yes
 
+- name: i3 config folder
+  file: 
+    path: ~/.config/i3/  
+    state: directory 
+    mode: '0755'
+  ignore_errors: yes
+
 - name: mycli symlink
   file: 
     src: ~/.DotFiles/config/mycli/.myclirc 
@@ -69,6 +76,13 @@
     src: ~/.DotFiles/config/iredis/.iredisrc 
     dest:  ~/.iredisrc 
     state: link 
+    force: yes
+
+- name: i3 symlink
+  file:
+    src: ~/.DotFiles/config/i3/config
+    dest: ~/.config/i3/config
+    state: link
     force: yes
 
 - name: change shell to zsh for current user
