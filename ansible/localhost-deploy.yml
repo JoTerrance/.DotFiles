@@ -8,13 +8,13 @@
     ansible_pkg_mgr: apt
     eclipse_base_dir: "${HOME}/IDE/eclipse"
   vars_files:
-    - ../ansible/vars/telegram.yml 
+    - vars/telegram.yml 
   environment:    
     NIXPKGS_ALLOW_UNFREE: 1
     PATH: "/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin"
   tasks:
     - name: Include task list
-      include_tasks: "../ansible/tasks/main.yml"
+      include_tasks: "tasks/main.yml"
 
   post_tasks:
     - name: Send Telegram notification on completion

@@ -6,9 +6,9 @@ sudo apt install curl python3-pip ansible -y
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
 ansible-galaxy collection install community.general
 if [ -z "$CODESPACE_NAME" ]; then
-  ansible-playbook ./Vagrant/localhost-deploy.yml --ask-become-pass
+  ansible-playbook ./ansible/localhost-deploy.yml --ask-become-pass
 else
-  ansible-playbook ./Vagrant/minimal-deploy.yml
+  ansible-playbook ./ansible/minimal-deploy.yml
 fi
 
 # To use this notification, you need to:
