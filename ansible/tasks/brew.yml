@@ -64,7 +64,9 @@
     - tmuxinator
     - ripgrep
     - lnav
+    - opentofu
     - terraform
+    - pulumi
     - dry
     - lazygit
     - lazydocker

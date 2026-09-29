@@ -105,7 +105,9 @@ Instalados via Linuxbrew:
 | `tmuxinator` | Gestor de sesiones de tmux |
 | `ripgrep` | Búsqueda de texto |
 | `lnav` | Visor de logs avanzado |
+| `opentofu` | Infraestructura como código de código abierto |
 | `terraform` | Infraestructura como código |
+| `pulumi` | Infraestructura como código con lenguajes de propósito general |
 | `dry` | TUI para Docker |
 | `lazygit` | TUI para Git |
 | `lazydocker` | TUI para Docker |
