@@ -172,3 +172,4 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 
 if [ -e /home/joterrance/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joterrance/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+[[ -x "$HOME/.local/bin/mise" ]] && eval "$("$HOME/.local/bin/mise" activate zsh)"
