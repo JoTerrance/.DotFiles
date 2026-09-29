@@ -51,7 +51,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 zstyle ':omz:plugins:nvm' lazy yes
-plugins=(git aws microk8s npm nvm pip tmuxinator jenv fzf mvn fasd zsh-completions zsh-syntax-highlighting docker docker-compose kubectl command-not-found copypath copybuffer copyfile git-prompt dotenv colorize colored-man-pages zsh-history-substring-search extract sudo gitignore )
+plugins=(git aws terraform opentofu pulumi microk8s npm nvm pip tmuxinator jenv fzf mvn fasd zsh-completions zsh-syntax-highlighting docker docker-compose kubectl command-not-found copypath copybuffer copyfile git-prompt dotenv colorize colored-man-pages zsh-history-substring-search extract sudo gitignore )
 if [[ -z "${BLIND}" ]]; then
   plugins+=(zsh-autosuggestions)
 fi
@@ -164,7 +164,7 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
-nvm use 22
+nvm use 24
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
