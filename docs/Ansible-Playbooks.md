@@ -22,20 +22,21 @@ ansible-playbook ./ansible/localhost-deploy.yml --ask-become-pass
 **Tareas incluidas** (en orden):
 1. `nix.yml` — Instala paquetes via Nix
 2. `apt.yml` — Instala paquetes del sistema via apt
-3. `helix.yml` — Instala el editor Helix
-4. `zsh.yml` — Configura Zsh y symlinks de configuración
-5. `docker.yml` — Instala Docker
-6. `jenv.yml` — Instala jenv (gestor de versiones de Java)
-7. `npm.yml` — Instala paquetes globales de Node.js
-8. `brew.yml` — Instala Homebrew (Linuxbrew) y paquetes
-9. `pip.yml` — Instala paquetes Python
-10. `sdkman.yml` — Instala SDKMan
-11. `nvim.yml` — Instala y configura Neovim
-12. `nnn.yml` — Instala el gestor de archivos nnn
-13. `grv.yml` — Instala GRV (Git Repository Viewer)
-14. `code.yml` — Configura VSCode
-15. `zed.yml` — Instala el editor Zed
-16. `nerd-fonts.yml` — Instala Nerd Fonts
+3. `mise.yml` — Instala mise para gestionar versiones de herramientas
+4. `helix.yml` — Instala el editor Helix
+5. `zsh.yml` — Configura Zsh y symlinks de configuración
+6. `docker.yml` — Instala Docker
+7. `jenv.yml` — Instala jenv (gestor de versiones de Java)
+8. `npm.yml` — Instala paquetes globales de Node.js
+9. `brew.yml` — Instala Homebrew (Linuxbrew) y paquetes
+10. `pip.yml` — Instala paquetes Python
+11. `sdkman.yml` — Instala SDKMan
+12. `nvim.yml` — Instala y configura Neovim
+13. `nnn.yml` — Instala el gestor de archivos nnn
+14. `grv.yml` — Instala GRV (Git Repository Viewer)
+15. `code.yml` — Configura VSCode
+16. `zed.yml` — Instala el editor Zed
+17. `nerd-fonts.yml` — Instala Nerd Fonts
 
 ---
 
@@ -92,6 +93,7 @@ Cada archivo de tarea es independiente y puede ser incluido en cualquier playboo
 | `main.yml` | Orquestador principal — incluye todas las tareas en orden |
 | `minimal.yml` | Configuración mínima para Codespaces |
 | `apt.yml` | Instala paquetes del sistema con apt |
+| `mise.yml` | Instala mise para gestionar versiones de herramientas |
 | `nix.yml` | Instala paquetes via Nix package manager |
 | `brew.yml` | Instala Homebrew y paquetes con brew |
 | `pip.yml` | Instala paquetes Python con pip |
