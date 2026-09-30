@@ -36,7 +36,8 @@ ansible-playbook ./ansible/localhost-deploy.yml --ask-become-pass
 14. `grv.yml` — Instala GRV (Git Repository Viewer)
 15. `code.yml` — Configura VSCode
 16. `zed.yml` — Instala el editor Zed
-17. `nerd-fonts.yml` — Instala Nerd Fonts
+17. `kiro.yml` — Instala el IDE Kiro
+18. `nerd-fonts.yml` — Instala Nerd Fonts
 
 ---
 
@@ -104,6 +105,7 @@ Cada archivo de tarea es independiente y puede ser incluido en cualquier playboo
 | `nvim.yml` | Instala Neovim |
 | `helix.yml` | Instala el editor Helix |
 | `zed.yml` | Instala el editor Zed |
+| `kiro.yml` | Instala el IDE Kiro |
 | `jenv.yml` | Instala jenv para gestionar versiones de Java |
 | `sdkman.yml` | Instala SDKMan |
 | `nnn.yml` | Instala el gestor de archivos nnn |
