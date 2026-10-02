@@ -22,7 +22,7 @@ ansible-playbook ./ansible/localhost-deploy.yml --ask-become-pass
 **Tareas incluidas** (en orden):
 1. `nix.yml` — Instala paquetes via Nix
 2. `apt.yml` — Instala paquetes del sistema via apt
-3. `chromium.yml` — Añade el PPA de Chromium e instala Chromium
+3. `chromium.yml` — Instala Chromium mediante snap
 4. `mise.yml` — Instala mise para gestionar versiones de herramientas
 5. `helix.yml` — Instala el editor Helix
 6. `zsh.yml` — Configura Zsh y symlinks de configuración
@@ -95,7 +95,7 @@ Cada archivo de tarea es independiente y puede ser incluido en cualquier playboo
 | `main.yml` | Orquestador principal — incluye todas las tareas en orden |
 | `minimal.yml` | Configuración mínima para Codespaces |
 | `apt.yml` | Instala paquetes del sistema con apt |
-| `chromium.yml` | Añade el PPA estable e instala Chromium |
+| `chromium.yml` | Instala Chromium mediante snap |
 | `mise.yml` | Instala mise para gestionar versiones de herramientas |
 | `nix.yml` | Instala paquetes via Nix package manager |
 | `brew.yml` | Instala Homebrew y paquetes con brew |
