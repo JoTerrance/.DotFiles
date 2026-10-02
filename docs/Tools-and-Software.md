@@ -4,7 +4,7 @@ Esta página lista todo el software que se instala automáticamente mediante los
 
 ## Paquetes del sistema (apt)
 
-Instalados via `tasks/apt.yml`:
+Instalados via las tareas de apt:
 
 ### Lenguajes y runtimes
 | Herramienta | Descripción |
@@ -55,7 +55,7 @@ Instalados via `tasks/apt.yml`:
 ### Desarrollo gráfico (solo en máquina completa)
 | Herramienta | Descripción |
 |-------------|-------------|
-| `chromium-browser` | Navegador web |
+| `chromium-browser` (PPA `chromium-team/stable`) | Navegador web |
 | `libx11-dev`, `libxext-dev`, `libxft-dev` | Librerías X11 para desarrollo |
 
 ---
