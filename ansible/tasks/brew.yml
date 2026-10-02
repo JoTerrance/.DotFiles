@@ -11,6 +11,7 @@
     creates: /opt/homebrew/bin/brew   # Cambia a /usr/local/bin/brew en Intel Mac
     executable: /bin/bash
   become: false
+  ignore_errors: true
 
 - name: Export brew into path
   blockinfile:
