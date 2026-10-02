@@ -1,0 +1,15 @@
+- name: Add Chromium stable PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:chromium-team/stable
+    state: present
+    update_cache: true
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"
+
+- name: Install Chromium
+  ansible.builtin.apt:
+    name: chromium-browser
+    state: present
+    update_cache: true
+  become: true
+  when: ansible_facts.distribution == "Ubuntu"

@@ -2,6 +2,7 @@
 ---
 - include_tasks: nix.yml
 - include_tasks: apt.yml
+- include_tasks: chromium.yml
 - include_tasks: mise.yml
 - include_tasks: helix.yml
 - include_tasks: zsh.yml

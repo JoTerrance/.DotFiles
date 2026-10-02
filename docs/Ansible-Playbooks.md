@@ -22,22 +22,23 @@ ansible-playbook ./ansible/localhost-deploy.yml --ask-become-pass
 **Tareas incluidas** (en orden):
 1. `nix.yml` — Instala paquetes via Nix
 2. `apt.yml` — Instala paquetes del sistema via apt
-3. `mise.yml` — Instala mise para gestionar versiones de herramientas
-4. `helix.yml` — Instala el editor Helix
-5. `zsh.yml` — Configura Zsh y symlinks de configuración
-6. `docker.yml` — Instala Docker
-7. `jenv.yml` — Instala jenv (gestor de versiones de Java)
-8. `npm.yml` — Instala paquetes globales de Node.js
-9. `brew.yml` — Instala Homebrew (Linuxbrew) y paquetes
-10. `pip.yml` — Instala paquetes Python
-11. `sdkman.yml` — Instala SDKMan
-12. `nvim.yml` — Instala y configura Neovim
-13. `nnn.yml` — Instala el gestor de archivos nnn
-14. `grv.yml` — Instala GRV (Git Repository Viewer)
-15. `code.yml` — Configura VSCode
-16. `zed.yml` — Instala el editor Zed
-17. `kiro.yml` — Instala el IDE Kiro
-18. `nerd-fonts.yml` — Instala Nerd Fonts
+3. `chromium.yml` — Añade el PPA de Chromium e instala Chromium
+4. `mise.yml` — Instala mise para gestionar versiones de herramientas
+5. `helix.yml` — Instala el editor Helix
+6. `zsh.yml` — Configura Zsh y symlinks de configuración
+7. `docker.yml` — Instala Docker
+8. `jenv.yml` — Instala jenv (gestor de versiones de Java)
+9. `npm.yml` — Instala paquetes globales de Node.js
+10. `brew.yml` — Instala Homebrew (Linuxbrew) y paquetes
+11. `pip.yml` — Instala paquetes Python
+12. `sdkman.yml` — Instala SDKMan
+13. `nvim.yml` — Instala y configura Neovim
+14. `nnn.yml` — Instala el gestor de archivos nnn
+15. `grv.yml` — Instala GRV (Git Repository Viewer)
+16. `code.yml` — Configura VSCode
+17. `zed.yml` — Instala el editor Zed
+18. `kiro.yml` — Instala el IDE Kiro
+19. `nerd-fonts.yml` — Instala Nerd Fonts
 
 ---
 
@@ -94,6 +95,7 @@ Cada archivo de tarea es independiente y puede ser incluido en cualquier playboo
 | `main.yml` | Orquestador principal — incluye todas las tareas en orden |
 | `minimal.yml` | Configuración mínima para Codespaces |
 | `apt.yml` | Instala paquetes del sistema con apt |
+| `chromium.yml` | Añade el PPA estable e instala Chromium |
 | `mise.yml` | Instala mise para gestionar versiones de herramientas |
 | `nix.yml` | Instala paquetes via Nix package manager |
 | `brew.yml` | Instala Homebrew y paquetes con brew |
