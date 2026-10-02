@@ -16,6 +16,8 @@
     deb: /tmp/kiro-latest.deb
     state: present
   become: true
+  environment:
+    PATH: "/usr/local/sbin:/usr/sbin:/sbin:{{ ansible_env.PATH | default('/usr/local/bin:/usr/bin:/bin') }}"
 
 - name: Clean up Kiro .deb package
   ansible.builtin.file:
