@@ -55,7 +55,6 @@ Instalados via las tareas de apt:
 ### Desarrollo gráfico (solo en máquina completa)
 | Herramienta | Descripción |
 |-------------|-------------|
-| `chromium-browser` (PPA `chromium-team/stable`) | Navegador web |
 | `libx11-dev`, `libxext-dev`, `libxft-dev` | Librerías X11 para desarrollo |
 
 ---
