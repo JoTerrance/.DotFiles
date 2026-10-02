@@ -1,17 +1,6 @@
-
-- name: Fetch Kiro release metadata
-  ansible.builtin.uri:
-    url: https://prod.download.desktop.kiro.dev/stable/metadata-linux-x64-stable.json
-    return_content: true
-  register: kiro_metadata
-
-- name: Determine Kiro .deb download URL
-  ansible.builtin.set_fact:
-    kiro_deb_url: "{{ (kiro_metadata.json.releases | selectattr('updateTo.url', 'search', '\\.deb$') | map(attribute='updateTo.url') | list)[0] }}"
-
 - name: Download Kiro .deb package
   ansible.builtin.get_url:
-    url: "{{ kiro_deb_url }}"
+    url: "https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/{{kiro_metadata.json.currentRelease}}/deb/kiro-ide-{{kiro_metadata.json.currentRelease}}-stable-linux-x64.deb"
     dest: /tmp/kiro-latest.deb
     mode: '0644'
   become: false
