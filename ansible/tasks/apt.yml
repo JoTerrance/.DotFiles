@@ -30,7 +30,6 @@
       - bat 
       - fd-find
       - nnn 
-      - chromium-browser
       - clang
       - clangd
       - cmake
