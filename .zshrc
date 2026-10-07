@@ -70,7 +70,6 @@ zstyle ':prompt:pure:prompt:*' color cyan
 
 # turn on git stash status
 zstyle :prompt:pure:git:stash show yes
-source $ZSH/oh-my-zsh.sh
 prompt pure
 # User configuration
 source $HOME/.aliases
@@ -108,7 +107,6 @@ alias awscli='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws
 alias remoteDebugOn="export MAVEN_OPTS='-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000  -Xmx4096m -Xms4096m -XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar'"
 alias remoteDebugOff='unset MAVEN_OPTS'
 alias jhotswap="export JAVA_HOME=$HOME/hotswap/jbr-17.0.5-linux-x64-b653.6 && export PATH=$JAVA_HOME/bin:$PATH"
-unalias grv
 fpath=(~/.zsh.d/ $fpath)
 export LD_LIBRARY_PATH=/usr/lib/python3/dist-packages/
 export GTAGSLABEL=pygments
@@ -164,12 +162,17 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
-nvm use 24
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm bash_completion
 
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 if [ -e /home/joterrance/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joterrance/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-[[ -x "$HOME/.local/bin/mise" ]] && eval "$("$HOME/.local/bin/mise" activate zsh)"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+source $ZSH/oh-my-zsh.sh
+unalias grv
+
+nvm use 24
