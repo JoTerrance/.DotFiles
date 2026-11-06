@@ -20,3 +20,6 @@ fi
 # As command-line arguments: --extra-vars "telegram_bot_token=YOUR_TOKEN telegram_chat_id=YOUR_CHAT_ID"
 # Install the community.general collection if not already installed:
 # ansible-galaxy collection install community.general
+# Install Infracost
+curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+infracost auth login
